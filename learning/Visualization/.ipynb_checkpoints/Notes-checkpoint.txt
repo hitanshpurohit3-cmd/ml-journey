@@ -1,0 +1,14 @@
+DATA VISUALIZATION
+
+->Data Visualization
+-->With Code
+    1.) Matplotlib, seaborn, Plotly
+    2.)Very High Flexibility(can customize every element)
+    3.)Can integrate into apps, ML pipeline
+    ->Types of Plot(Mainly):
+        1.)Categorical Plots
+        2.)Distribution Plots
+-->Without Code
+    1.)Power BI, Tableau, Google data studio.
+    2.)Limited to what the tool allow.
+    3.)Very tough to integrate with ML pipelines.
