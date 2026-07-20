@@ -1,0 +1,45 @@
+The Problem Statement / Look at the big picture
+Welcome to Machine Learning Housiing Corporation! The first task you are asked to perform is to build a modal of housing prices in California using the California census data. This data has metrics such as the population, median income, median housing price, and so on for each block group in California. Block groups are the smallest geographical unit for which the US Census Bureau publishes sample data(a block group typically has population of 600 to 3,000 people). We will just call them "districts" for short.
+
+Your model should learn from this data and be able to predict the median housing price in any district, given all the other metrics.
+
+Best practice tip:
+Since you are a well-organized data scientist, the first thing you do is to pull out your Machine Learning project checklist. You can start with the one in ???; it should work reasonably well for most  Machine Learning projects but make sure to adapt it to your needs. In this chapter we will go through many checklist items, but we will also skip a few, either because they are self-explanatory or because they will be dicussed in later chapter.
+
+Process while dealing the machine learning project once you are given the problem statment:
+Step- 1 
+The first thing you should do is Frame the problem
+example: for this project ask:
+Q.1 The first question to ask your boss is whay xactly is the business objective; building a model is probably not the end goal. How does the company expect to use and benefit from this model?
+This is important because it will determine how you frame the problem, what algorithms you will select, what performance measure you will use to evaluate your model, and how much effort you should spend tweeaking it.
+=> Your boss answers that your model's output (a prediction of a district's median housing price) will be fed to another Machine Learning system, along with many other signlas. This downstream system will determine whether it is worth investing in a given area or not. Getting this rigth is critical, as it directly affects revenue.
+
+## important define 
+->Pipleines
+A sequence of data processing components is called a data pipeline. Pipelines are very common in Machine Learning systems, since there is a lot of data to manipulate ad mandy data transformations to apply.
+Components tyoically run asynchronously. Each component pulls  in a large amount of data, process it and spits out the result in another data store, ad then some time later the next component in the pipeline pulls this data and spits its own output, and so on. Each component is farily self-contained: the interface between components is simply the data store. This makes the system quite simple to grasp (with the help of a data flow graph), and different teams can focus on different components. Moreover, if a component breaks down, the downstream components can often continue to run normally (at least for a while) by just using the last output from the broken component. This makes the architecture quite robust.
+On the other hand, a broken component can go unnnoticed for some time if proper monitoring is not implemented. The data gets stale and the overall system's performance drops.
+->Pipelines
+##
+Q.2 The next question to ask is what the current solution looks like (if any). It will often give you a reference performance, as well as insights on how to solve the problem. Your boss answers that the district housing prices are currently estimated manually by experts: a team gathers up-to-daste information about a district and when they cannot get the median housing price, they estimate it using complex rules.
+
+This is costly and time-consuming and their estimates are not great; in cases where they manage to find out the actual median housing price, they often realize that there estimates were off by more than 20%. This is why company thinks that it would be useful to train a model to predict a district's median housing price given other data about the district. The census data looks like a great dataset to exploit for this purpose, since it includes the median housing prices of thousands of districts, as well as other data.
+
+Okay now with all this info i m now reaady to start designing my system.
+-> First , i need to frame the problem: is it supervised, unsupervised or Reinforcement Learning?
+-> Is it a classification task, a regression task or something else?
+-> Should i use batch learning or online learning techniques?
+For our project we will go for Supervised learning, regression task and batch learning.
+regression-> univariate(Since we are predicting only single value from teh model, and it) and multiple regression problem as we have multiple features to make a prediction.
+
+Step-2:
+Select a Performance Measure
+-> My next step is to select  performance measure. A typical performance measure for regression problems is the Root Mean Square Error(RMSE). It gives an idea of how much error the system typically makes in its predictions, with a higher weigth for large errors. 
+
+Step-3:
+Check the Assumptions
+-> Lastly, it is good practice to list and verify the assumptions that were made so far(by you or others); this can catch serious issues early on.
+for example:
+the distrcit prices that my system outputs are going to be fed into a downstream Machine Learning system, and we assume that these prices are going to be used as such. But what if the downstream actually converts the prices into categories(e.g., "cheap","medium",or "expensive") and then uses those categories instead of the prices themselves? In this case, getting the price perfectly rigth is not important at all; your system just needs to get the category right. If that's so then the problem should have been framed as a classification task, not a regression task. You don't want to find this out after working on a regression system for months.
+
+Fortunately, after talking with the team in charge of the downstream systems, you are confident that they do indeed need the actula prices, not just categories. Great! You're all set, the lights are green and you can start coding now!
